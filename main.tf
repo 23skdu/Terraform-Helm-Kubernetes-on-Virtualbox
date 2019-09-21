@@ -4,7 +4,6 @@ resource "virtualbox_vm" "node" {
   image     = "virtualbox-centos7.7.1908_kube.box"
   cpus      = 1 
   memory    = "2048 mib"
-  user_data = file("user_data")
 
   network_adapter {
     type           = "hostonly"
