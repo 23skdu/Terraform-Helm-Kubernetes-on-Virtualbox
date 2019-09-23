@@ -4,14 +4,16 @@ resource "virtualbox_vm" "masternode" {
   image     = "virtualbox-centos7.7.1908-kube.box"
   cpus      = 2 
   memory    = "2048 mib"
+  status    = "running"
   user_data = file("kubemaster")
   network_adapter {
     type           = "hostonly"
     host_interface = "vboxnet0"
+    device = "IntelPro1000MTServer"
   }
 }
 output "kubemasterip" {
-  value = element(virtualbox_vm.masternode.*.network_adapter.0.ipv4_address, 1)
+  value = virtualbox_vm.masternode.*.network_adapter.0.ipv4_address
 }
 
 resource "virtualbox_vm" "workernode" {

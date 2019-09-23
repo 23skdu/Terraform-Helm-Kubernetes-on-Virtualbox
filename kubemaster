@@ -1,0 +1,3 @@
+#!/bin/bash
+	
+echo "DEPLOYED" | sudo tee /root/deployed
