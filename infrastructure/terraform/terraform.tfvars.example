@@ -1,0 +1,8 @@
+# image            = "virtualbox-centos7.7.1908-kube.box"
+# host_interface   = "vboxnet0"
+# master_count     = 1
+# master_cpus      = 2
+# master_memory    = "2048 mib"
+# worker_count     = 2
+# worker_cpus      = 1
+# worker_memory    = "2048 mib"

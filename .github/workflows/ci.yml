@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
+
+jobs:
+  terraform:
+    name: Terraform
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.9.x"
+      - name: Format check
+        run: terraform -chdir=infrastructure/terraform fmt -check -recursive
+      - name: Init
+        run: terraform -chdir=infrastructure/terraform init -backend=false -input=false
+      - name: Validate
+        run: terraform -chdir=infrastructure/terraform validate
+
+  packer:
+    name: Packer
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-packer@v3
+      - name: Format check
+        run: packer fmt -check -recursive infrastructure/packer
+      - name: Init
+        working-directory: infrastructure/packer
+        run: packer init .
+      - name: Validate
+        working-directory: infrastructure/packer
+        run: packer validate .
+
+  shell:
+    name: Shell
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: ShellCheck
+        uses: ludeeus/action-shellcheck@master
+        with:
+          scandir: infrastructure/packer/scripts

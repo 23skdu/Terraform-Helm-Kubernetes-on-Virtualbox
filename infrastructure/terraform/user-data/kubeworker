@@ -1,3 +1,4 @@
 #!/bin/bash
-	
+
+set -euo pipefail
 echo "DEPLOYED" | sudo tee /root/deployed
