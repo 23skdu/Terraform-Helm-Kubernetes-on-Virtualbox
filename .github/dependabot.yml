@@ -4,8 +4,3 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-
-  - package-ecosystem: "terraform"
-    directory: "/infrastructure/terraform"
-    schedule:
-      interval: "weekly"
