@@ -26,3 +26,7 @@ See [docs/getting-started.md](docs/getting-started.md).
 Dependabot (`.github/dependabot.yml`) opens weekly pull requests for GitHub Actions
 and Terraform provider updates. CI (`.github/workflows/ci.yml`) validates formatting
 and configuration on every push and pull request.
+
+## License
+
+This project is released into the public domain under the [Unlicense](https://unlicense.org). See [LICENSE](LICENSE) for details.
